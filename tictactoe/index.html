@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Tic Tac Toe (Vanilla JS)</title>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/carbon-components@10.41.0/css/carbon-components.min.css"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" media="screen" href="main.css" />
+		<script src="main.js" defer></script>
+	</head>
+	<body>
+		<header class="bx--header">
+			<a
+				class="bx--header__name"
+				href="https://subliminal-stimuli.vercel.app"
+				><span class="bx--header__name--prefix"
+					>Subliminal</span
+				>&nbsp;Stimuli
+			</a>
+			<nav
+				aria-label="Portfolio"
+				class="bx--header__nav"
+			>
+				<ul
+					aria-label="Portfolio"
+					class="bx--header__menu-bar"
+					role="menubar"
+				>
+					<li>
+						<a
+							href="/"
+							target="_self"
+							class="
+								bx--header__menu-item
+							"
+							tabindex="0"
+							><span
+								class="
+									bx--text-truncate--end
+								"
+								>Sort
+								Table
+								(Vanilla
+								JS)</span
+							></a
+						>
+					</li>
+					<li>
+						<a
+							href="/tictactoe"
+							target="_self"
+							class="
+								bx--header__menu-item
+							"
+							tabindex="0"
+							><span
+								class="
+									bx--text-truncate--end
+								"
+								>Tic
+								Tac
+								Toe
+								(Vanilla
+								JS)</span
+							></a
+						>
+					</li>
+					<li>
+						<a
+							href="https://subliminal-stimuli.vercel.app/api-calls"
+							target="_blank"
+							class="
+								bx--header__menu-item
+							"
+							tabindex="0"
+							><span
+								class="
+									bx--text-truncate--end
+								"
+								>API
+								Calls</span
+							></a
+						>
+					</li>
+					<li>
+						<a
+							href="https://wvpioneers.github.io/one"
+							target="_blank"
+							class="
+								bx--header__menu-item
+							"
+							tabindex="0"
+							><span
+								class="
+									bx--text-truncate--end
+								"
+								>Virtual
+								Ventilator</span
+							></a
+						>
+					</li>
+					<li>
+						<a
+							href="https://wvpioneers.github.io/two"
+							target="_blank"
+							class="
+								bx--header__menu-item
+							"
+							tabindex="0"
+							><span
+								class="
+									bx--text-truncate--end
+								"
+								>Digital
+								Coloring
+								Book</span
+							></a
+						>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div class="bx--content">
+			<div class="top-message">
+				Tic Tac Toe Built with Vanilla
+				JavaScript
+			</div>
+			<main class="board" data-board>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+			</main>
+		</div>
+		<div class="message" id="box">
+			<div data-message></div>
+			<button
+				type="reset"
+				id="reset"
+				class="bx--btn bx--btn--primary"
+			>
+				Reset
+			</button>
+		</div>
+	</body>
+</html>

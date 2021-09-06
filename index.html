@@ -7,56 +7,145 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>Document</title>
-
-		<style>
-			table {
-				width: 100%;
-			}
-			th,
-			td {
-				padding: 10px;
-			}
-			th {
-				text-transform: uppercase;
-				border-bottom: 1px solid #c4c4c4;
-				text-align: left;
-			}
-			tbody tr:nth-child(odd) {
-				background: #ffffff;
-			}
-			tbody tr:nth-child(even) {
-				background: #808080;
-			}
-
-			form {
-				display: flex;
-				flex-direction: column;
-				width: fit-content;
-				padding: 20px;
-				border: 1px solid #c4c4c4;
-				margin: auto;
-			}
-
-			label:not(:first-child) {
-				margin-top: 10px;
-			}
-
-			label span {
-				display: inline-flex;
-				min-width: 100px;
-			}
-
-			.submit-wrapper {
-				padding-top: 20px;
-				display: flex;
-				justify-content: flex-end;
-			}
-		</style>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/carbon-components@10.41.0/css/carbon-components.min.css"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+		<title>Table (Vanilla JS)</title>
 	</head>
 
 	<body>
-		<div>
+		<header class="bx--header">
+			<a
+				class="bx--header__name"
+				href="https://subliminal-stimuli.vercel.app"
+				><span class="bx--header__name--prefix"
+					>Subliminal</span
+				>&nbsp;Stimuli
+			</a>
+			<nav
+				aria-label="Portfolio"
+				class="bx--header__nav"
+			>
+				<ul
+					aria-label="Portfolio"
+					class="bx--header__menu-bar"
+					role="menubar"
+				>
+					<li>
+						<a
+							href="/"
+							target="_self"
+							class="
+								bx--header__menu-item
+							"
+							tabindex="0"
+							><span
+								class="
+									bx--text-truncate--end
+								"
+								>Sort
+								Table
+								(Vanilla
+								JS)</span
+							></a
+						>
+					</li>
+					<li>
+						<a
+							href="/tictactoe"
+							target="_self"
+							class="
+								bx--header__menu-item
+							"
+							tabindex="0"
+							><span
+								class="
+									bx--text-truncate--end
+								"
+								>Tic
+								Tac
+								Toe
+								(Vanilla
+								JS)</span
+							></a
+						>
+					</li>
+					<li>
+						<a
+							href="https://subliminal-stimuli.vercel.app/api-calls"
+							target="_blank"
+							class="
+								bx--header__menu-item
+							"
+							tabindex="0"
+							><span
+								class="
+									bx--text-truncate--end
+								"
+								>API
+								Calls</span
+							></a
+						>
+					</li>
+					<li>
+						<a
+							href="https://wvpioneers.github.io/one"
+							target="_blank"
+							class="
+								bx--header__menu-item
+							"
+							tabindex="0"
+							><span
+								class="
+									bx--text-truncate--end
+								"
+								>Virtual
+								Ventilator</span
+							></a
+						>
+					</li>
+					<li>
+						<a
+							href="https://wvpioneers.github.io/two"
+							target="_blank"
+							class="
+								bx--header__menu-item
+							"
+							tabindex="0"
+							><span
+								class="
+									bx--text-truncate--end
+								"
+								>Digital
+								Coloring
+								Book</span
+							></a
+						>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div class="bx--content">
+			<div class="top-message">
+				Sortable Table Built with Vanilla
+				JavaScript. You can add and remove
+				items.
+			</div>
 			<table>
 				<thead>
 					<tr>
@@ -73,23 +162,53 @@
 		</div>
 		<div>
 			<form>
+				<h3>New Entry</h3>
+
 				<label>
-					<span>Name</span>
+					<span class="bx--label"
+						>Name</span
+					>
 					<input
 						type="text"
 						id="name"
+						class="
+							bx--text-input
+						"
+						autocomplete="off"
 					/>
 				</label>
 				<label>
-					<span>address</span>
-					<input type="text" id="add" />
+					<span class="bx--label"
+						>address</span
+					>
+					<input
+						type="text"
+						id="add"
+						class="
+							bx--text-input
+						"
+						autocomplete="off"
+					/>
 				</label>
 				<label>
-					<span>dob</span>
-					<input type="text" id="dob" />
+					<span class="bx--label"
+						>dob</span
+					>
+					<input
+						type="text"
+						id="dob"
+						class="
+							bx--text-input
+						"
+						autocomplete="off"
+					/>
 				</label>
 				<div class="submit-wrapper">
 					<button
+						class="
+							bx--btn
+							bx--btn--secondary
+						"
 						type="submit"
 						id="submit"
 					>
@@ -100,8 +219,6 @@
 		</div>
 	</body>
 	<script>
-		// TODO: Sorting
-
 		var DATA = [
 			{
 				name: 'Francis',
@@ -136,7 +253,7 @@
 		            <td>${data[i].name}</td>
 		            <td>${data[i].address}</td>
 		            <td>${data[i].dob}</td>
-		            <td><button class="remove" id="remove">remove</button></td>
+		            <td><button class="remove bx--btn bx--btn--danger" id="remove">remove</button></td>
 		        </tr>
 		        `;
 				Body.innerHTML += newRow;

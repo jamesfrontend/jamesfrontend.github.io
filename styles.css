@@ -1,0 +1,99 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 16px;
+	line-height: 1.25;
+	--cell-size: 100px;
+	--dark: #000000;
+	--mark-size: calc(var(--cell-size) * 0.9);
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+}
+
+.bx--header {
+	background-color: #e7d1be;
+	border-bottom: 1px solid #e7d1be;
+}
+
+a.bx--header__name,
+a.bx--header__name:hover {
+	color: var(--dark);
+}
+
+a.bx--header__menu-item {
+	color: #578082;
+}
+
+.top-message {
+	padding-block: 2rem;
+	font-size: 20px;
+	line-height: 1.25;
+	opacity: 0.75;
+}
+
+table {
+	width: 100%;
+}
+
+thead tr {
+	border-bottom: 1px solid #c4c4c4;
+}
+
+th,
+td {
+	padding: 10px;
+}
+
+th {
+	text-transform: uppercase;
+	border-bottom: 1px solid #c4c4c4;
+	text-align: left;
+	font-weight: 600;
+}
+
+tbody td {
+	vertical-align: bottom;
+}
+
+tbody tr:nth-child(odd) {
+	background: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+	background: #808080;
+	color: #dedede;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	width: min(100%, 400px);
+	padding: 20px;
+	border: 1px solid #c4c4c4;
+	margin: auto;
+}
+
+label:not(:first-child) {
+	margin-top: 10px;
+}
+
+label span {
+	display: inline-flex;
+	min-width: 100px;
+}
+
+.submit-wrapper {
+	padding-top: 20px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+h3 {
+	margin-bottom: 2rem;
+}
