@@ -1,13 +1,244 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <title>Tic Tac Toe</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-</head>
-<body>
-    <main>
-      hello
-    </main>
-</body>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+
+		<style>
+			table {
+				width: 100%;
+			}
+			th,
+			td {
+				padding: 10px;
+			}
+			th {
+				text-transform: uppercase;
+				border-bottom: 1px solid #c4c4c4;
+				text-align: left;
+			}
+			tbody tr:nth-child(odd) {
+				background: #ffffff;
+			}
+			tbody tr:nth-child(even) {
+				background: #808080;
+			}
+
+			form {
+				display: flex;
+				flex-direction: column;
+				width: fit-content;
+				padding: 20px;
+				border: 1px solid #c4c4c4;
+				margin: auto;
+			}
+
+			label:not(:first-child) {
+				margin-top: 10px;
+			}
+
+			label span {
+				display: inline-flex;
+				min-width: 100px;
+			}
+
+			.submit-wrapper {
+				padding-top: 20px;
+				display: flex;
+				justify-content: flex-end;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>name</th>
+						<th>address</th>
+						<th>
+							date of
+							birth
+						</th>
+					</tr>
+				</thead>
+				<tbody id="table-body"></tbody>
+			</table>
+		</div>
+		<div>
+			<form>
+				<label>
+					<span>Name</span>
+					<input
+						type="text"
+						id="name"
+					/>
+				</label>
+				<label>
+					<span>address</span>
+					<input type="text" id="add" />
+				</label>
+				<label>
+					<span>dob</span>
+					<input type="text" id="dob" />
+				</label>
+				<div class="submit-wrapper">
+					<button
+						type="submit"
+						id="submit"
+					>
+						Submit
+					</button>
+				</div>
+			</form>
+		</div>
+	</body>
+	<script>
+		// TODO: Sorting
+
+		var DATA = [
+			{
+				name: 'Francis',
+				address: '123 Penn St',
+				dob: '03/03/2000',
+			},
+			{
+				name: 'Zack',
+				address: 'PO Box 13',
+				dob: '12/12/2000',
+			},
+			{
+				name: 'Mike',
+				address: '20 Forest Circle',
+				dob: '10/22/2000',
+			},
+		];
+
+		const Form = document.querySelector('form');
+		let Table = document.querySelector('table');
+		let Body = document.getElementById('table-body');
+
+		Form.addEventListener('submit', addNew);
+		Table.addEventListener('click', deleteRow);
+
+		buildTable(DATA);
+
+		function buildTable(data) {
+			for (i = 0; i < data.length; i++) {
+				let newRow = `
+		        <tr>
+		            <td>${data[i].name}</td>
+		            <td>${data[i].address}</td>
+		            <td>${data[i].dob}</td>
+		            <td><button class="remove" id="remove">remove</button></td>
+		        </tr>
+		        `;
+				Body.innerHTML += newRow;
+			}
+		}
+
+		function addNew(e) {
+			e.preventDefault();
+			const newName =
+				document.getElementById('name').value;
+			const newAdd =
+				document.getElementById('add').value;
+			const newDob =
+				document.getElementById('dob').value;
+			Body.innerHTML += `
+		                  <tr>
+		                  <td>${newName}</td>
+		                  <td>${newAdd}</td>
+		                  <td>${newDob}</td>
+		                  <td><button class="remove" id="remove">remove</button></td>
+		                  </tr>
+		          `;
+			Form.reset();
+		}
+
+		function deleteRow(e) {
+			if (!e.target.classList.contains('remove')) {
+				return;
+			}
+			const btn = e.target;
+			btn.closest('tr').remove();
+		}
+
+		// sorting
+		function sortTable(column, asc = true) {
+			const table = document.querySelector('table');
+			const dirModifier = asc ? 1 : -1;
+			const tBody = table.tBodies[0];
+			const rows = Array.from(
+				Body.querySelectorAll('tr')
+			);
+
+			const sortRows = rows.sort((a, b) => {
+				const aColText = a
+					.querySelector(
+						`td:nth-child(${
+							column + 1
+						})`
+					)
+					.textContent.trim();
+				const bColText = b
+					.querySelector(
+						`td:nth-child(${
+							column + 1
+						})`
+					)
+					.textContent.trim();
+
+				return aColText > bColText
+					? 1 * dirModifier
+					: -1 * dirModifier;
+			});
+			while (tBody.firstChild) {
+				tBody.removeChild(tBody.firstChild);
+			}
+			tBody.append(...sortRows);
+
+			table.querySelectorAll('th').forEach((th) =>
+				th.classList.remove(
+					'sort-asc',
+					'sort-desc'
+				)
+			);
+			table.querySelector(
+				`th:nth-child(${column + 1})`
+			).classList.toggle('sort-asc', asc);
+			table.querySelector(
+				`th:nth-child(${column + 1})`
+			).classList.toggle('sort-desc', !asc);
+		}
+
+		document.querySelectorAll('table th').forEach((header) => {
+			header.addEventListener('click', () => {
+				const getTable =
+					header.parentElement
+						.parentElement
+						.parentElement;
+
+				const headerIndex =
+					Array.prototype.indexOf.call(
+						header.parentElement
+							.children,
+						header
+					);
+
+				const isAsc =
+					header.classList.contains(
+						'sort-asc'
+					);
+
+				sortTable(headerIndex, !isAsc);
+			});
+		});
+	</script>
 </html>
